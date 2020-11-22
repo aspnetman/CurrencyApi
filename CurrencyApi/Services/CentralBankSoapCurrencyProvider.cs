@@ -7,7 +7,6 @@ using CentralBankApi;
 
 using CurrencyApi.Extensions;
 using CurrencyApi.Models;
-using CurrencyApi.Services.Configuration;
 
 namespace CurrencyApi.Services
 {
@@ -18,9 +17,9 @@ namespace CurrencyApi.Services
     {
         private readonly DailyInfoSoapClient dailyInfo;
 
-        public CentralBankSoapCurrencyProvider(ICurrencyProviderConfiguration currencyProviderConfiguration)
+        public CentralBankSoapCurrencyProvider(string currencyServiceRemoteAddress)
         {
-            this.dailyInfo = new DailyInfoSoapClient(DailyInfoSoapClient.EndpointConfiguration.DailyInfoSoap12, currencyProviderConfiguration.GetCurrencyServiceRemoteAddress());
+            this.dailyInfo = new DailyInfoSoapClient(DailyInfoSoapClient.EndpointConfiguration.DailyInfoSoap12, currencyServiceRemoteAddress);
         }
 
         /// <inheritdoc />

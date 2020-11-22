@@ -2,7 +2,6 @@ using System.Collections.Generic;
 
 using CurrencyApi.Services;
 using CurrencyApi.Services.Calculators;
-using CurrencyApi.Services.Configuration;
 using CurrencyApi.Services.Validators;
 
 using Microsoft.AspNetCore.Builder;
@@ -26,8 +25,7 @@ namespace CurrencyApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<ICurrencyService, CurrencyService>();
-            services.AddSingleton<ICurrencyProviderConfiguration, AppSettingsCurrencyProviderConfiguration>();
-            services.AddSingleton<ICurrencyProvider, CentralBankSoapCurrencyProvider>();
+            services.AddSingleton<ICurrencyProvider>(x => new CentralBankSoapCurrencyProvider(Configuration["DailyInfoRemoteAddress"]));
             services.AddSingleton(
                 s => new CoordinateInCircleCurrencyRequestValidator(
                     this.Configuration.GetIntOrDefault("circle-radius", 8),
