@@ -1,0 +1,34 @@
+﻿@model IList<Currency>
+@{
+    ViewBag.Title = "Валюты";
+}
+
+    <form method="post">
+        <p>Введите начальные данные для получения курса валют</p>
+
+        <div class="row">
+            <div class="paramName">X:</div>
+            <div class="paramValue"><input type="text" name="X" /></div>
+        </div>
+
+        <div class="row">
+            <div class="paramName">Y:</div>
+            <div class="paramValue"><input type="text" name="Y" /></div>
+        </div>
+
+        <div class="row">
+            <div class="paramName">Code:</div>
+            <div class="paramValue">
+                <select name="Code" class="currencies">
+                    @foreach (Currency currency in Model)
+                    {
+                        <option value="@currency.Code">@currency.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="submit">
+            <input type="submit" value="Получить" />
+        </div>
+    </form>

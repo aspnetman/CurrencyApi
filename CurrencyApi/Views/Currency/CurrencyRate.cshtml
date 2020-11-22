@@ -1,0 +1,8 @@
+﻿@model CurrencyRate
+@{
+    ViewBag.Title = "Курс валюты";
+}
+
+<div>Курс валюты @Model.Currency.Name на @Model.Date.ToString("D")</div>
+<div>Номинал: @Model.Nom</div>
+<div>Курс: @Model.Rate </div>
